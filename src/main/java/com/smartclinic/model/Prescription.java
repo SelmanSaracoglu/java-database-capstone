@@ -3,8 +3,12 @@ package com.smartclinic.model;
 
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Document(collection = "prescriptions")
@@ -21,16 +25,27 @@ public class Prescription {
 
     private String appointmentId;
 
+    @NotNull
     private List<Medication> medications;
 
     private String notes;
+
+    @CreatedDate
+    private LocalDate createdAt;
 
     // Nested class → Medication
 
     public static class Medication{
 
+        @NotNull
+        @Size(min = 2, max = 100)
         private String name;
+
+        @NotNull
+        @Pattern(regexp = "\\d+mg")
         private String dosage;
+
+        @Size(max = 255)
         private String instructions;
 
         // Getter & Setter

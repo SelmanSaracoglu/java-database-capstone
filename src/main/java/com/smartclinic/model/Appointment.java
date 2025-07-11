@@ -2,6 +2,7 @@ package com.smartclinic.model;
 
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.NotNull;
 
 import javax.print.Doc;
@@ -23,6 +24,7 @@ public class Appointment {
     @JoinColumn(name = "patient_id")
     private Patient patient;
 
+    @Future
     @NotNull
     private LocalDateTime appointmentDate;
 

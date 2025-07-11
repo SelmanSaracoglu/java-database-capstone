@@ -1,9 +1,12 @@
 package com.smartclinic.model;
 
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+
+import java.util.List;
 
 @Entity
 @Table(name = "doctors")
@@ -20,7 +23,17 @@ public class Doctor {
     @NotNull
     private String specialty;
 
-    private String availabletimes;
+    @NotNull
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private String password;
+
+
+    @ElementCollection
+    @CollectionTable(
+            name = "doctor_availability",
+            joinColumns = @JoinColumn(name = "doctor_id")
+    )
+    private List<DoctorAvailability> availabletimes;
 
 
     public Long getId() {
@@ -47,11 +60,19 @@ public class Doctor {
         this.specialty = specialty;
     }
 
-    public String getAvailabletimes() {
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public List<DoctorAvailability> getAvailabletimes() {
         return availabletimes;
     }
 
-    public void setAvailabletimes(String availabletimes) {
+    public void setAvailabletimes(List<DoctorAvailability> availabletimes) {
         this.availabletimes = availabletimes;
     }
 }
