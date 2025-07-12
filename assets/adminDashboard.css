@@ -1,0 +1,20 @@
+.doctor-card {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+    display: inline-block;
+    width: 200px;
+    background: #f9f9f9;
+}
+
+.doctor-card h4 {
+    margin: 5px 0;
+}
+
+#doctorList {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+

@@ -1,0 +1,12 @@
+.appointment-card {
+    border: 1px solid #ddd;
+    background: #fafafa;
+    margin: 10px;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.appointment-card p {
+    margin: 5px 0;
+}
+
