@@ -124,4 +124,12 @@ public class Prescription {
     public void setNotes(String notes) {
         this.notes = notes;
     }
+
+    public LocalDate getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDate createdAt) {
+        this.createdAt = createdAt;
+    }
 }

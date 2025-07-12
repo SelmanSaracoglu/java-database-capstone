@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "admin users")
+@Table(name = "admin_user")
 public class Admin {
 
     @Id
