@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Smart Clinic - Homepage</title>
+  <link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+<div class="container">
+  <h1>Smart Clinic Management System</h1>
+  <p>Welcome to the Smart Clinic Management System. Please choose your role to continue.</p>
+
+  <button onclick="navigateToLogin('admin')">Admin Login</button>
+  <button onclick="navigateToLogin('doctor')">Doctor Login</button>
+</div>
+
+<footer id="appFooter">
+  <p>&copy; 2025 Smart Clinic Management System. All rights reserved.</p>
+  <p>
+    <a href="/about.html">About</a> |
+    <a href="/contact.html">Contact</a>
+  </p>
+</footer>
+
+
+<script src="/static/js/components/footer.js"></script>
+<script>
+  function navigateToLogin(role) {
+      localStorage.setItem("selectedRole", role);
+      window.location.href = "/login.html";
+  }
+</script>
+</body>
+</html>

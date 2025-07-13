@@ -1,27 +1,36 @@
-const header = {
-    render: (role) => {
-        const headerDiv = document.getElementById("header");
+document.addEventListener("DOMContentLoaded", () => {
+    const header = document.getElementById("appHeader");
 
-        let html = `<h2>Smart Clinic Management System</h2>`;
+    const role = localStorage.getItem("role");
+    const token = localStorage.getItem("token");
 
+    if (token && role) {
         if (role === "admin") {
-            html += `
+            header.innerHTML = `
                 <nav>
-                    <a href="/admin/dashboard">Admin Dashboard</a>
-                    <a href="#">Doctors</a>
-                    <a href="#">Logout</a>
+                    <a href="/admin/adminDashboard.html">Admin Dashboard</a>
+                    <a href="#" onclick="logout()">Logout</a>
                 </nav>
             `;
         } else if (role === "doctor") {
-            html += `
+            header.innerHTML = `
                 <nav>
-                    <a href="/doctor/dashboard">Doctor Dashboard</a>
-                    <a href="#">Appointments</a>
-                    <a href="#">Logout</a>
+                    <a href="/doctor/doctorDashboard.html">Doctor Dashboard</a>
+                    <a href="#" onclick="logout()">Logout</a>
                 </nav>
             `;
         }
-
-        headerDiv.innerHTML = html;
+    } else {
+        header.innerHTML = `
+            <nav>
+                <a href="/login.html">Login</a>
+            </nav>
+        `;
     }
-};
+});
+
+function logout() {
+    localStorage.removeItem("token");
+    localStorage.removeItem("role");
+    window.location.href = "/login.html";
+}

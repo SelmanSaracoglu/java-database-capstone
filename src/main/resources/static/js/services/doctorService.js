@@ -6,15 +6,11 @@ const doctorService = {
                 "Content-Type": "application/json",
                 "Authorization": `Bearer ${index.getToken()}`
             }
-        }).then(res => res.json());
-    }
-
-    searchDoctors: (name, specialty) => {
-        return doctorService.getAllDoctors().then(data => {
-            return data.filter(doc =>
-                (name === "" || doc.name.toLowerCase().includes(name.toLowerCase())) &&
-                (specialty === "" || doc.specialty === specialty)
-            );
+        }).then(response => {
+            if (!response.ok) {
+                throw new Error("Failed to fetch doctors");
+            }
+            return response.json();
         });
     },
 
@@ -26,7 +22,24 @@ const doctorService = {
                 "Authorization": `Bearer ${index.getToken()}`
             },
             body: JSON.stringify(doctor)
+        }).then(response => {
+            if (!response.ok) {
+                throw new Error("Failed to add doctor");
+            }
+            return response.json();
+        });
+    },
+
+    deleteDoctor: (id) => {
+        return fetch(`/api/doctors/${id}`, {
+            method: "DELETE",
+            headers: {
+                "Authorization": `Bearer ${index.getToken()}`
+            }
+        }).then(response => {
+            if (!response.ok) {
+                throw new Error("Failed to delete doctor");
+            }
         });
     }
-
 };
