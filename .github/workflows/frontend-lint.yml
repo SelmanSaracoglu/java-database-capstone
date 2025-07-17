@@ -1,0 +1,20 @@
+name: Frontend Lint
+
+on: [push, pull_request]
+
+jobs:
+  lint-frontend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Node.js kur
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: eslint kur
+        run: npm install eslint --save-dev
+
+      - name: Linter çalıştır
+        run: npx eslint assets/js/**/*.js
